@@ -93,3 +93,25 @@ INSERT INTO produto_preco (id_produto, preco, cadastrado_em, cadastrado_por, apl
 
 SELECT * FROM produto_preco
 -- Buscar os dados de produto e preço por código de barras
+
+SELECT * 
+    FROM produto
+WHERE codigo_barras = '7894561235282'
+    
+SELECT produto.id_produto
+      ,nome
+      ,marca
+      ,quantidade
+      ,unidade_medida
+      ,preco
+    FROM produto
+    	LEFT JOIN produto_preco
+    		ON produto.id_produto = produto_preco.id_produto
+WHERE codigo_barras = '7894563435123'
+  AND sysdate BETWEEN aplicar_inicio AND aplicar_fim
+
+
+SELECT sysdate FROM DUAL;
+
+
+
