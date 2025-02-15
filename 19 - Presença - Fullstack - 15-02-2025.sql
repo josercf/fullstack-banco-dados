@@ -20,6 +20,16 @@ CREATE TABLE produto
     CONSTRAINT CHK_UNIDADE_MEDIDA CHECK (unidade_medida IN ('G', 'KG', 'L', 'ML', 'CM', 'M', 'MM'))  
 );
 
+ALTER TABLE produto
+    ADD CONSTRAINT UQ_CODIGO_BARRAS UNIQUE (codigo_barras);
+
+ALTER TABLE produto
+    DROP CONSTRAINT CHK_UNIDADE_MEDIDA;
+
+ALTER TABLE produto
+    ADD CONSTRAINT CONSTRAINT CHK_UNIDADE_MEDIDA CHECK (unidade_medida IN ('G', 'KG', 'L', 'ML', 'CM', 'M', 'MM', 'UN'))  
+
+
 SELECT * FROM produto;
 -- Criar a tabela de Produto_Preco e definir as constraints
 CREATE TABLE produto_preco
@@ -38,3 +48,48 @@ CREATE TABLE produto_preco
 );
 
 SELECT * FROM produto_preco;
+
+-- Inserir dados na tabela usuário
+INSERT INTO usuario (nome) VALUES ('Karen Bastos');
+INSERT INTO usuario (nome) VALUES ('Andreia Luiza Mattos');
+INSERT INTO usuario (nome) VALUES ('Jeruza Maria de Souza');
+INSERT INTO usuario (nome) VALUES ('Ramon Alves');
+INSERT INTO usuario (nome) VALUES ('Jaibson Matis');
+INSERT INTO usuario (nome) VALUES ('Aline Portela');
+INSERT INTO usuario (nome) VALUES ('Aline Portela');
+INSERT INTO usuario (nome) VALUES ('Paulo Leandro 🤓');
+
+
+SELECT * FROM usuario;
+
+DELETE FROM usuario WHERE id_usuario = 7
+
+-- Inserir dados na tabela produto
+INSERT INTO produto VALUES (1, 'Sabão em Pó', 'Sabão em Pó', 'Brilhante', 2, 'KG', '7894561235282');
+INSERT INTO produto (nome, descricao, marca, quantidade, unidade_medida, codigo_barras) VALUES ('Sabão em Pó', 'Sabão em Pó', 'OMO', 2, 'KG', '7894563435282');
+INSERT INTO produto (nome, descricao, marca, quantidade, unidade_medida, codigo_barras) VALUES ('Arroz', 'Arroz tipo I', 'Namorado', 5, 'KG', '7894563435123');
+INSERT INTO produto (nome, descricao, marca, quantidade, unidade_medida, codigo_barras) VALUES ('Feijão', 'Feijão carioca', 'Vasconcelos', 1, 'KG', '7894563432512');
+INSERT INTO produto (nome, descricao, marca, quantidade, unidade_medida, codigo_barras) VALUES ('Pão Francês', 'Pão Francês', 'PRÓPRIA', 1, 'KG', '7894563432500');
+
+SELECT * FROM produto;
+
+
+
+-- Inserir dados na tabela produto_preço
+INSERT INTO produto_preco (id_produto, preco, cadastrado_em, cadastrado_por, aplicar_inicio, aplicar_fim)
+    VALUES (1, 20.50, TO_DATE('2025-02-15 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 2, TO_DATE('2024-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-12-31 23:59:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO produto_preco (id_produto, preco, cadastrado_em, cadastrado_por, aplicar_inicio, aplicar_fim)
+    VALUES (1, 22.00, TO_DATE('2025-02-15 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 2, TO_DATE('2025-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-06-30 23:59:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO produto_preco (id_produto, preco, cadastrado_em, cadastrado_por, aplicar_inicio, aplicar_fim)
+    VALUES (1, 22.00, TO_DATE('2025-02-15 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 2, TO_DATE('2025-07-01 00:00:00','YYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-12-31 23:59:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO produto_preco (id_produto, preco, cadastrado_em, cadastrado_por, aplicar_inicio, aplicar_fim)
+    VALUES (2, 17.00, TO_DATE('2025-02-15 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 4, TO_DATE('2025-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-06-30 23:59:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO produto_preco (id_produto, preco, cadastrado_em, cadastrado_por, aplicar_inicio, aplicar_fim)
+    VALUES (3, 6.98, TO_DATE('2025-02-15 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 4, TO_DATE('2025-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS'), TO_DATE('2025-06-30 23:59:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+SELECT * FROM produto_preco
+-- Buscar os dados de produto e preço por código de barras
